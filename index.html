@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+    <html>
+        <head>
+            <title>Josh's sweet website</title>
+             <style>
+            body {
+                background: rgb(125, 198, 205);
+                color: rgb(45, 45, 45);
+                padding: 10px;
+                font-family: arial;
+            }
+            header {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            [id=all-contents] {
+                max-width: 800px;
+                margin: auto;
+            }
+    
+            /* navigation menu */
+            nav {
+                background: rgb(239, 80, 41);
+                margin: 0 auto;
+                margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+                border-radius: 10px;
+            }
+            nav header {
+                display: flex;
+                align-items: center;
+                color: rgb(255, 255, 255);
+                flex: 1;
+            }
+            nav ul {
+                list-style-image: none;
+            }
+            nav li {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            nav a {
+                text-decoration: none;
+                color: #fff;
+            }
+    
+            /* main container area beneath menu */
+            main {
+                background: rgb(245, 238, 219);
+                display: flex;
+            }
+            [class=sidebar] {
+                margin-right: 25px;
+                padding: 10px;
+            }
+            [class=sidebar] img {
+                width: 200px;
+            }
+            [class=content] {
+                flex: 1;
+                padding: 15px;
+            }
+            [class=interests] header {
+                font-size: 1.25em;
+            }
+        </style>
+        </head>
+        <body>
+          <div id="all-content">
+              <nav>
+                  <header>Josh's sweet website</header>
+                  <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="portfolio.html">Portfolio</a></li>
+                  </ul>
+                  </nav>
+                  <main>
+                      <div class="sidebar">
+                          <img src="https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/14237580_10102315363784484_2905336965982776253_n.jpg?oh=531ff3dbc42fbb141f775273b44c3fc5&oe=59BC6541">
+                      </div>
+                      <div class="content">
+                          <header>Joshua Strzeszkowski</header>
+                          <p>Teacher in New Orleans</p>
+                              <section class="interests">
+                                  <header>Interests</header>
+                                  <ul>
+                                      <li>Dogs</li>
+                                      <li>South Park</li>
+                                      <li>New York Yankees</li>
+                                  </ul>
+                              </section>
+                      </div>
+                  </main>
+          </div>  
+        </body>
+    </html>
