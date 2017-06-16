@@ -93,7 +93,7 @@
 
     /* global isFriend */
     QUnit.test("isFriend() : Should take a name and an object and return true if <name> is a friend of <object> and false otherwise", function(assert){
-      assert.equal(isFriend("jimmy",{friends:["bobby", "ralf"]}), false);
+      assert.equal(isFriend("jimmy",{friends:["bobby", "ralf"]}), false); 
       assert.equal(isFriend("ralf",{friends:["bobby", "ralf"]}), true);
       assert.equal(isFriend("chuck",{}), false);
     });
