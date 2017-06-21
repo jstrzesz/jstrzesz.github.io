@@ -82,8 +82,8 @@ function nonFriends(name, data){
     for (var i = 0; i < data.length; i++){
      if (data[i]['name'] !== name && data[i]['friends'] && (!(data[i]['friends'].includes(name)))){
         array.push(data[i]['name']);
-     }  
-    }
+     } 
+     }
     return array;
 }
 
