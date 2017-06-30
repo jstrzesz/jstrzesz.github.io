@@ -114,8 +114,8 @@ _.last = function(array, n){
 *      -> should log "a" "b" "c" to the console
 */
 _.each = function(collection, test){
-    if(Array.isArray(test)){
-        for (let i = 0; i < test.length; i++){
+    if(Array.isArray(collection)){
+        for (let i = 0; i < collection.length; i++){
             test(collection[i], i, collection)
         }
     } else {
@@ -242,7 +242,7 @@ _.partition = function(array, test){
 _.unique = function(array){
     const duplicatesRemoved = [];
    _.each(array, function(element, index, array){
-         if(_.indexOf(duplicatesRemoved, element) === -1) {
+         if(_.indexOf(duplicatesRemoved, element, array) === -1) {
       duplicatesRemoved.push(element);
          }
    });
@@ -285,7 +285,7 @@ _.map = function(collection, test){
 _.pluck = function(array, property){
     const plucked = [];
     _.map(array, function(element, index, collection){
-        plucked.push(property);
+        plucked.push(element[property]);
     });
     return plucked;
 };
@@ -304,7 +304,9 @@ _.pluck = function(array, property){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
+_.contains = function(array, value){
+    return _.indexOf(array, value) === -1 ? false : true;
+};
 
 /** _.every()
 * Arguments:
@@ -326,7 +328,23 @@ _.pluck = function(array, property){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-
+_.every = function(collection, test){
+    let result = true;
+    if (typeof test === 'function'){
+        _.each(collection, function(element, index, collection){
+            if (!test(element, index, collection)){
+                result = false;
+            }
+        });
+    } else {
+        _.each(collection, function(element, index, collection){
+            if (!element){
+                result = false;
+            }
+        });
+    }
+    return result;
+};
 
 /** _.some()
 * Arguments:
@@ -348,7 +366,23 @@ _.pluck = function(array, property){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-
+_.some = function(collection, test){
+    let result = false;
+    if (typeof test === 'function'){
+        _.each(collection, function(element, index, collection){
+            if (test(element, index, collection)){
+                result = true;
+            }
+        });
+    } else {
+        _.each(collection, function(element, index, collection){
+            if (element){
+                result = true;
+            }
+        });
+    }
+    return result;
+};
 
 /** _.reduce()
 * Arguments:
@@ -368,7 +402,21 @@ _.pluck = function(array, property){
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-
+_.reduce = function(array, test, seed) {
+    let result;
+    if (seed > -1) {
+        result = seed;
+        _.each(array, function(element, index, collection){
+            result = test(result, element, index);
+        });
+    } else {
+        result = array[0];
+        for (let i = 1; i < array.length; i++) {
+            result = test(result, array[i], i);
+        }
+    }
+    return result;
+};
 
 /** _.extend()
 * Arguments:
@@ -384,7 +432,14 @@ _.pluck = function(array, property){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
-
-
+_.extend = function(objectA, objectB){
+    let result = objectA;
+    for (let i = 0; i < arguments.length; i++){
+        _.each(arguments[i], function(element, index, collection){
+            result[index] = element;
+        });
+    }
+     return result;
+};
 // This is the proper way to end a javascript library
 }());
