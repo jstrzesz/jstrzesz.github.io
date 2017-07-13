@@ -63,7 +63,6 @@ $(function(){
        }
     $('#section-wishlist').append(productList(data));
     $('li').click(function(event){
-    function modalMaker(product) {
         var modal = $('<div>').addClass('modal').attr('id', 'popup').appendTo('#section-wishlist');
             // $('.modal' + productList(event.currentTarget.id));
         var modalSection = $('<div>').addClass('modal-div').appendTo('.modal');
@@ -99,7 +98,7 @@ $(function(){
                 $('.modal').remove();
             });
             return $('#popup' + event.currentTarget.id);
-    };
+    });
     // $('li').click(function(event){
     //     console.log(event.currentTarget.data);
     //     var productModal = data.map(function(product, i){
